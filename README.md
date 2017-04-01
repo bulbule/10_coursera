@@ -6,7 +6,7 @@ To run, install the required packages:
 $ pip install -r requirements.txt
 ```
 *Note, that in rare cases the script cannot identify some of the data. Either because it is not indeed indicitated at the page or the page source does not explicitely contain this information. For instance, this was noticed with the reference to some non-English courses pages.
-Also it might take a couple of minutes to gather all the info.
+Also it might take a couple of minutes to gather all the info.*
 
 # Usage
 
