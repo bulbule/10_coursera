@@ -1,11 +1,13 @@
-import requests
-from bs4 import BeautifulSoup as soup
-from random import shuffle
-import json
-from datetime import datetime
-import re
-from openpyxl import Workbook
 import argparse
+from datetime import datetime
+import json
+from random import choice
+import re
+
+from bs4 import BeautifulSoup as soup
+from openpyxl import Workbook
+import requests
+
 
 COURSES_URL = 'https://www.coursera.org/sitemap~www~courses.xml'
 NUM_COURSES = 20
@@ -16,9 +18,12 @@ def get_courses_list():
     response = requests.get(COURSES_URL).content
     courses_soup = soup(response, 'lxml')
     courses_tags_list = courses_soup.find_all('loc')
-    shuffle(courses_tags_list)
-    for course_tag in courses_tags_list[:NUM_COURSES]:
+    courses_number = 0
+    while courses_number < NUM_COURSES and courses_tags_list:
+        course_tag = choice(courses_tags_list)
         courses_list.append(course_tag.get_text())
+        courses_tags_list.remove(course_tag)
+        courses_number += 1
     return courses_list
 
 
